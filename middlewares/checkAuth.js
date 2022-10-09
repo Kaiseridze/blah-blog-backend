@@ -4,7 +4,7 @@ export default (req, res, next) => {
   const token = (req.headers.authorization || "").replace(/Bearer\s?/, "");
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.PASSWORD_JWT);
+      const decoded = jwt.verify(token, "mambers");
       req.userId = decoded._id;
       next();
     } catch (err) {
