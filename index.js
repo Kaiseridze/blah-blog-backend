@@ -64,10 +64,6 @@ mongoose
     console.log("db error", err);
   });
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
-
 // Auth/Login routes
 app.post("/auth/login", loginValidator, validationMiddleware, login); // Sign in
 app.post("/auth/register", registerValidator, validationMiddleware, register); // Sign up
