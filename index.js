@@ -108,7 +108,7 @@ app.get("/posts/comments/:id", getPostComments); // Get comments
 app.delete("/posts/:id/comments/:comment_id", checkAuth, removeCommentById); // Remove comment
 
 // Open ports
-app.listen(process.end.PORT || 4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     console.log(err);
   }
