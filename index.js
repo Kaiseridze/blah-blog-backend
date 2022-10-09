@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import multer from "multer";
-import fs from 'fs'
+import fs from "fs";
 
 import {
   registerValidator,
@@ -16,7 +16,6 @@ import {
   getMe,
   changeAvatar,
   removeAvatar,
-
 } from "./controllers/UserControllers.js";
 import {
   createPost,
@@ -43,8 +42,8 @@ app.use("/uploads", express.static("uploads"));
 // Init storage of uploads
 const storage = multer.diskStorage({
   destination: (_, __, callback) => {
-    if(!fs.existsSync('uploads')){
-      fs.mkdirSync('uploads')
+    if (!fs.existsSync("uploads")) {
+      fs.mkdirSync("uploads");
     }
     callback(null, "uploads");
   },
@@ -57,9 +56,7 @@ const upload = multer({ storage });
 
 // Mongoose init
 mongoose
-  .connect(
-    "mongodb+srv://admin:wwwwww@cluster0.xhger.mongodb.net/blog?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("db OK");
   })
@@ -111,7 +108,7 @@ app.get("/posts/comments/:id", getPostComments); // Get comments
 app.delete("/posts/:id/comments/:comment_id", checkAuth, removeCommentById); // Remove comment
 
 // Open ports
-app.listen(4444, (err) => {
+app.listen(process.end.PORT || 4444, (err) => {
   if (err) {
     console.log(err);
   }
